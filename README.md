@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# First Sat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Your first sat. Safely in cold storage.**
 
-Currently, two official plugins are available:
+A step-by-step guided web app that helps Bitcoin beginners get their first satoshi into cold storage using a Foundation Passport hardware wallet.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live site:** [first-sat.netlify.app](https://first-sat.netlify.app)
 
-## React Compiler
+## Why This Exists
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Millions of people buy Bitcoin on exchanges and leave it there. Exchanges get hacked, freeze accounts, and go bankrupt. FTX, Celsius, BlockFi — the list keeps growing.
 
-## Expanding the ESLint configuration
+The solution is self-custody with a hardware wallet. But for beginners, the setup process is intimidating. Documentation is scattered, jargon-heavy, and assumes prior knowledge.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+First Sat fixes that. One clear path, no choice paralysis. Get the hardware wallet out of the drawer and into use.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## What It Does
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+First Sat walks beginners through 6 phases:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Why This Matters** — Understand exchange risk and why self-custody matters
+2. **Passport Setup** — Unbox, verify, and configure your Foundation Passport
+3. **Seed Phrase** — The most critical step: securely back up your 24-word seed phrase
+4. **Sparrow Wallet** — Install and pair a desktop wallet
+5. **BULL Wallet** — Install and pair a mobile wallet
+6. **First Sat** — Send a test transaction to cold storage
+
+By the end, the user has Bitcoin in cold storage that only they control.
+
+## Design Principles
+
+- **Activation over education** — one clear path, no overwhelm
+- **One action per screen** — never multiple things to do at once
+- **No jargon without explanation** — plain English always
+- **Progress saved locally** — close the tab, come back tomorrow, pick up where you left off
+- **Sequential gating** — phases must be completed in order, no skipping ahead
+
+## Tech Stack
+
+- React + Vite + TypeScript
+- Tailwind CSS
+- React Router
+- Fully static, client-side only — no backend, no accounts, no tracking
+- Hosted on Netlify
+
+## Running Locally
+
+```bash
+git clone https://github.com/SovereignGG/FirstSat.git
+cd FirstSat
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Contributing
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Contributions are welcome. Some ideas:
+
+- **Improve copy** — make explanations clearer, friendlier, more accurate
+- **Add animations** — subtle transitions between screens
+- **Accessibility** — screen reader support, keyboard navigation
+- **Translations** — help non-English speakers secure their Bitcoin
+- **Testing** — add unit and integration tests
+
+To contribute:
+
+1. Fork the repo
+2. Create a branch (`git checkout -b your-feature`)
+3. Make your changes
+4. Push and open a PR
+
+## License
+
+Open source. Free forever.
+
+## Credits
+
+Built by [Become Unruggable](https://beunruggable.com).
+
+Not financial advice.
