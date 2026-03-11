@@ -4,7 +4,7 @@ export function Footer() {
       <div className="max-w-2xl mx-auto flex flex-col items-center gap-2 text-xs text-text-dim">
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
-            href="https://github.com"
+            href="https://github.com/SovereignGG/FirstSat"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-text-muted transition-colors"
