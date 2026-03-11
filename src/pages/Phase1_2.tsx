@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
-import { stepToRoute, getNextStep, PHASES } from '../hooks/useProgress';
+import { stepToRoute, getNextStep } from '../hooks/useProgress';
 
 interface Props {
   onComplete: (stepId: string) => void;
