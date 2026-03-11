@@ -31,7 +31,7 @@ export function Phase5_1({ onComplete }: Props) {
 
         <div className="flex flex-col sm:flex-row gap-3">
           <a
-            href="https://apps.apple.com/app/bull-bitcoin/id1664498067"
+            href="https://apps.apple.com/cy/app/bull-bitcoin/id6743380972"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center gap-3 bg-bg-card hover:bg-bg-card-hover border border-border rounded-xl p-4 transition-colors"
