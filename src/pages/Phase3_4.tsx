@@ -67,7 +67,7 @@ export function Phase3_4({ onComplete }: Props) {
           </p>
 
           <div className="bg-bitcoin/10 rounded-lg p-3 flex items-center gap-3">
-            <span className="text-bitcoin font-semibold text-sm">10% off</span>
+            <span className="text-bitcoin font-semibold text-sm">5% off</span>
             <p className="text-sm text-text-muted">
               Use code <strong className="text-text font-mono">UNRUGGABLE</strong>{' '}
               at{' '}
