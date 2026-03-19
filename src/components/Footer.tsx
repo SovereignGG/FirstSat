@@ -13,6 +13,15 @@ export function Footer() {
           </a>
           <span>·</span>
           <a
+            href="https://github.com/SovereignGG/FirstSat/blob/main/LICENSE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-text-muted transition-colors"
+          >
+            MIT License
+          </a>
+          <span>·</span>
+          <a
             href="https://beunruggable.com"
             target="_blank"
             rel="noopener noreferrer"
