@@ -4,7 +4,7 @@
 
 A step-by-step guided web app that helps Bitcoin beginners get their first satoshi into cold storage using a Foundation Passport hardware wallet.
 
-**Live site:** [first-sat.netlify.app](https://first-sat.netlify.app)
+**Live site:** [sovereigngg.github.io/FirstSat](https://sovereigngg.github.io/FirstSat)
 
 ## Why This Exists
 
@@ -41,7 +41,7 @@ By the end, the user has Bitcoin in cold storage that only they control.
 - Tailwind CSS
 - React Router
 - Fully static, client-side only — no backend, no accounts, no tracking
-- Hosted on Netlify
+- Hosted on GitHub Pages
 
 ## Running Locally
 
