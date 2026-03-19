@@ -4,7 +4,7 @@
 
 A step-by-step guided web app that helps Bitcoin beginners get their first satoshi into cold storage using a Foundation Passport hardware wallet.
 
-**Live site:** [sovereigngg.github.io/FirstSat](https://sovereigngg.github.io/FirstSat)
+**Live site:** [firstsat.beunruggable.com](https://firstsat.beunruggable.com)
 
 ## Why This Exists
 
