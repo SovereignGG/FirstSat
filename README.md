@@ -73,7 +73,7 @@ To contribute:
 
 ## License
 
-Open source. Free forever.
+MIT License. See [LICENSE](./LICENSE).
 
 ## Credits
 
