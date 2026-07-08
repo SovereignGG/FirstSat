@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Confetti } from '../components/Confetti';
 import { useDevice } from '../devices';
 
@@ -5,8 +6,21 @@ interface Props {
   onReset: () => void;
 }
 
+const LIGHTNING_ADDRESS = 'GG21M@primal.net';
+
 export function Phase6_4({ onReset }: Props) {
   const device = useDevice();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(LIGHTNING_ADDRESS);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard unavailable — the address is still selectable text
+    }
+  };
 
   const achievements = [
     `Set up and verified a ${device.name} hardware wallet`,
@@ -77,6 +91,39 @@ export function Phase6_4({ onReset }: Props) {
               Know someone with a hardware wallet still in the box? Send them this guide.
             </li>
           </ul>
+        </div>
+
+        {/* Value for value */}
+        <div className="w-full bg-bg-card rounded-2xl border border-border p-6 mb-8 text-left card-lift">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xl">⚡</span>
+            <h3 className="text-sm font-semibold text-text uppercase tracking-wider">
+              Value for value
+            </h3>
+          </div>
+          <p className="text-sm text-text-muted leading-relaxed mb-4">
+            First Sat is free and always will be. If this guide helped you take
+            control of your Bitcoin, you can send a few sats back as a tip —
+            straight over Lightning, no middleman. That's the whole point, right?
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={`lightning:${LIGHTNING_ADDRESS}`}
+              className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-bg border border-border font-mono text-sm text-bitcoin hover:border-bitcoin/50 transition-colors"
+            >
+              ⚡ {LIGHTNING_ADDRESS}
+            </a>
+            <button
+              onClick={handleCopy}
+              className={`btn-sheen py-3 px-6 rounded-xl font-semibold text-sm transition-all cursor-pointer active:scale-[0.98] ${
+                copied
+                  ? 'bg-success/20 text-success border border-success/40'
+                  : 'bg-bitcoin hover:bg-bitcoin-hover text-white'
+              }`}
+            >
+              {copied ? 'Copied ✓' : 'Copy address'}
+            </button>
+          </div>
         </div>
 
         {/* Personal help CTA */}
