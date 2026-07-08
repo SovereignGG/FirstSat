@@ -79,6 +79,32 @@ export function Phase6_4({ onReset }: Props) {
           </ul>
         </div>
 
+        {/* Personal help CTA */}
+        <div className="w-full relative rounded-2xl border border-bitcoin/40 p-6 mb-8 text-left overflow-hidden card-lift bg-gradient-to-br from-bitcoin/15 via-bg-card to-bg-card">
+          <div className="glow-orb w-48 h-48 bg-bitcoin/25 -top-16 -right-16" aria-hidden="true" />
+          <div className="relative">
+            <h3 className="text-sm font-semibold text-bitcoin uppercase tracking-wider mb-2">
+              Want to go deeper?
+            </h3>
+            <p className="text-lg font-bold text-text mb-2">
+              Get one-on-one help from GG
+            </p>
+            <p className="text-sm text-text-muted leading-relaxed mb-4">
+              Multi-sig setups, inheritance planning, privacy, or personal
+              training on anything Bitcoin self-custody — work directly with GG
+              and become truly unruggable.
+            </p>
+            <a
+              href="https://beunruggable.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-sheen inline-flex items-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm bg-bitcoin hover:bg-bitcoin-hover text-white transition-all active:scale-[0.98]"
+            >
+              Reach out at beunruggable.com →
+            </a>
+          </div>
+        </div>
+
         <button
           onClick={onReset}
           className="text-sm text-text-dim hover:text-text-muted transition-colors cursor-pointer"
