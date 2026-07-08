@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Confetti } from '../components/Confetti';
 import { useDevice } from '../devices';
+import lightningQr from '../assets/lightning-qr.svg';
 
 interface Props {
   onReset: () => void;
@@ -101,11 +102,29 @@ export function Phase6_4({ onReset }: Props) {
               Value for value
             </h3>
           </div>
-          <p className="text-sm text-text-muted leading-relaxed mb-4">
+          <p className="text-sm text-text-muted leading-relaxed mb-5">
             First Sat is free and always will be. If this guide helped you take
             control of your Bitcoin, you can send a few sats back as a tip —
             straight over Lightning, no middleman. That's the whole point, right?
           </p>
+
+          {/* Scannable QR */}
+          <div className="flex justify-center mb-5">
+            <div className="relative bg-white rounded-2xl p-3 shadow-[0_8px_32px_-8px_rgba(247,147,26,0.35)]">
+              <img
+                src={lightningQr}
+                alt="Lightning QR code for GG21M@primal.net"
+                className="w-44 h-44 block"
+              />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black flex items-center justify-center border-4 border-white">
+                <span className="text-white text-lg leading-none">⚡</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-text-dim text-center mb-4">
+            Scan with any Lightning wallet
+          </p>
+
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href={`lightning:${LIGHTNING_ADDRESS}`}
