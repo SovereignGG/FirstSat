@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
+import { AppBadges } from '../components/AppBadges';
 import { stepToRoute, getNextStep } from '../hooks/useProgress';
+import { useDevice } from '../devices';
 
 interface Props {
   onComplete: (stepId: string) => void;
@@ -8,57 +10,176 @@ interface Props {
 
 export function Phase2_2({ onComplete }: Props) {
   const navigate = useNavigate();
+  const device = useDevice();
 
   const handleContinue = () => {
     onComplete('2.2');
     navigate(stepToRoute(getNextStep('2.2')!));
   };
 
+  if (device.id === 'passport') {
+    return (
+      <StepLayout stepId="2.2" onContinue={handleContinue} ctaText="I've downloaded Envoy →">
+        <div className="space-y-6 stagger">
+          <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+            Download the <span className="text-bitcoin">Envoy app</span> on your phone
+          </h1>
+
+          <div className="space-y-4 text-text-muted leading-relaxed">
+            <p>
+              Envoy is Foundation's companion app, designed specifically for your Passport.
+              It's what you'll use to pair with your device and manage your wallet on mobile.
+            </p>
+          </div>
+
+          <AppBadges
+            appStoreUrl="https://apps.apple.com/app/envoy-by-foundation/id1584811818"
+            playStoreUrl="https://play.google.com/store/apps/details?id=com.foundationdevices.envoy"
+          />
+
+          <div className="bg-bg-card rounded-xl border border-border p-5">
+            <p className="text-sm text-text-muted leading-relaxed">
+              <span className="text-success font-medium">✓ Open source</span> — Envoy is built
+              by Foundation, the same team that made your Passport. The code is publicly
+              auditable, and the app is designed to work seamlessly with your hardware wallet.
+            </p>
+          </div>
+        </div>
+      </StepLayout>
+    );
+  }
+
+  if (device.id === 'seedsigner') {
+    return (
+      <StepLayout stepId="2.2" onContinue={handleContinue} ctaText="SeedSigner OS is on my microSD →">
+        <div className="space-y-6 stagger">
+          <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+            Download and flash <span className="text-bitcoin">SeedSigner OS</span>
+          </h1>
+
+          <div className="space-y-4 text-text-muted leading-relaxed">
+            <p>
+              SeedSigner runs its own tiny operating system from the microSD card.
+              You'll download the latest release and write ("flash") it onto the
+              card from your computer.
+            </p>
+          </div>
+
+          <a
+            href="https://seedsigner.com/downloads"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-lift block bg-bg-card border border-border rounded-xl p-5"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-text font-semibold">Download SeedSigner OS</p>
+                <p className="text-sm text-text-dim mt-1">seedsigner.com/downloads</p>
+              </div>
+              <span className="text-text-muted">→</span>
+            </div>
+          </a>
+
+          <div className="space-y-3">
+            {[
+              {
+                num: 1,
+                text: 'Download the image for your hardware (Pi Zero) from seedsigner.com or the official GitHub releases.',
+              },
+              {
+                num: 2,
+                text: 'Verify the download — the site explains how to check the PGP signature. This proves the software is the real, unmodified release.',
+              },
+              {
+                num: 3,
+                text: 'Flash the image to your microSD card using Raspberry Pi Imager or Balena Etcher.',
+              },
+              {
+                num: 4,
+                text: 'Insert the microSD into the Pi Zero. Keep the device powered off for now.',
+              },
+            ].map((step) => (
+              <div
+                key={step.num}
+                className="step-row flex gap-4 bg-bg-card rounded-xl border border-border p-4"
+              >
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-bitcoin/10 text-bitcoin font-bold text-sm flex items-center justify-center">
+                  {step.num}
+                </div>
+                <p className="text-sm text-text-muted leading-relaxed pt-1">
+                  {step.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-bg-card rounded-xl border border-border p-5">
+            <p className="text-sm text-text-muted leading-relaxed">
+              <span className="text-success font-medium">✓ Why verify?</span> — With
+              SeedSigner, the software <em>is</em> the device. Verifying the signature
+              is the SeedSigner equivalent of checking a tamper-evident seal.
+            </p>
+          </div>
+        </div>
+      </StepLayout>
+    );
+  }
+
+  // ColdCard Q
   return (
-    <StepLayout stepId="2.2" onContinue={handleContinue} ctaText="I've downloaded Envoy →">
-      <div className="space-y-6">
+    <StepLayout stepId="2.2" onContinue={handleContinue} ctaText="My Q is powered on →">
+      <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-          Download the <span className="text-bitcoin">Envoy app</span> on your phone
+          Power on your <span className="text-bitcoin">ColdCard Q</span>
         </h1>
 
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
-            Envoy is Foundation's companion app, designed specifically for your Passport.
-            It's what you'll use to pair with your device and manage your wallet on mobile.
+            Cut open the bag (keep it — the number is on it), and let's bring
+            your Q to life. It runs on batteries or USB-C, and never needs to be
+            plugged into a computer.
           </p>
         </div>
 
-        {/* App store badges */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <a
-            href="https://apps.apple.com/app/envoy-by-foundation/id1584811818"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-3 bg-bg-card hover:bg-bg-card-hover border border-border rounded-xl p-4 transition-colors"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-text">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-            </svg>
-            <span className="text-sm font-medium">App Store</span>
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.foundationdevices.envoy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-3 bg-bg-card hover:bg-bg-card-hover border border-border rounded-xl p-4 transition-colors"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-text">
-              <path d="M3.18 23.02c-.41-.24-.68-.71-.68-1.22V2.2c0-.51.27-.98.68-1.22l11.06 11.02L3.18 23.02zM15.76 13.52L5.56 23.72l12.08-6.96-1.88-3.24zM20.65 10.88L17.64 9.14l-2.12 2.86 2.12 2 3.01-1.74c.55-.32.55-1.06 0-1.38zM5.56.28l10.2 10.2 1.88-1.88L5.56.28z" />
-            </svg>
-            <span className="text-sm font-medium">Google Play</span>
-          </a>
+        <div className="space-y-3">
+          {[
+            {
+              num: 1,
+              text: 'Open the battery compartment on the back and insert 3x AAA batteries — or connect a USB-C cable to a wall charger.',
+            },
+            {
+              num: 2,
+              text: 'Hold the power button until the screen lights up.',
+            },
+            {
+              num: 3,
+              text: 'Read and accept the Terms of Sale shown on screen.',
+            },
+            {
+              num: 4,
+              text: "The Q will display its serial and bag number — don't tap past this yet. We'll verify it in the next step.",
+            },
+          ].map((step) => (
+            <div
+              key={step.num}
+              className="step-row flex gap-4 bg-bg-card rounded-xl border border-border p-4"
+            >
+              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-bitcoin/10 text-bitcoin font-bold text-sm flex items-center justify-center">
+                {step.num}
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed pt-1">
+                {step.text}
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="bg-bg-card rounded-xl border border-border p-5">
           <p className="text-sm text-text-muted leading-relaxed">
-            <span className="text-success font-medium">✓ Open source</span> — Envoy is built
-            by Foundation, the same team that made your Passport. The code is publicly
-            auditable, and the app is designed to work seamlessly with your hardware wallet.
+            <span className="text-success font-medium">✓ Fully airgapped</span> — the
+            Q talks to the outside world through QR codes, NFC and a microSD card.
+            No companion app is required; you'll pair it directly with Sparrow and
+            BULL Wallet later.
           </p>
         </div>
       </div>

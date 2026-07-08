@@ -1,18 +1,34 @@
+import { Confetti } from '../components/Confetti';
+import { useDevice } from '../devices';
+
 interface Props {
   onReset: () => void;
 }
 
 export function Phase6_4({ onReset }: Props) {
+  const device = useDevice();
+
+  const achievements = [
+    `Set up and verified a ${device.name} hardware wallet`,
+    'Secured your seed phrase with multiple backups',
+    'Connected to Sparrow Wallet on your desktop',
+    'Connected to BULL Wallet on your phone',
+    'Completed a test transaction to cold storage',
+    `Verified your receive address on the ${device.short} itself`,
+  ];
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 min-h-[calc(100vh-120px)] flex flex-col">
-      <div className="flex-1 flex flex-col items-center justify-center text-center">
+    <div className="max-w-2xl mx-auto px-4 py-8 min-h-[calc(100vh-120px)] flex flex-col relative">
+      <Confetti />
+
+      <div className="flex-1 flex flex-col items-center justify-center text-center stagger">
         {/* Celebration */}
-        <div className="mb-6 text-6xl">🎉</div>
+        <div className="mb-6 text-6xl anim-float">🎉</div>
 
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-4">
           Your first sat is in cold storage.
           <br />
-          <span className="text-bitcoin">You're unruggable.</span>
+          <span className="text-gradient">You're unruggable.</span>
         </h1>
 
         <p className="text-text-muted leading-relaxed max-w-md mb-8">
@@ -25,15 +41,8 @@ export function Phase6_4({ onReset }: Props) {
           <h3 className="text-sm font-semibold text-text uppercase tracking-wider mb-4">
             What you've achieved
           </h3>
-          <ul className="space-y-3 text-sm text-text-muted">
-            {[
-              'Set up and verified a Foundation Passport hardware wallet',
-              'Secured your seed phrase with multiple backups',
-              'Connected to Sparrow Wallet on your desktop',
-              'Connected to BULL Wallet on your phone',
-              'Completed a test transaction to cold storage',
-              'Verified your receive address on the Passport itself',
-            ].map((item) => (
+          <ul className="space-y-3 text-sm text-text-muted stagger">
+            {achievements.map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <span className="text-success mt-0.5 flex-shrink-0">✓</span>
                 {item}
@@ -55,12 +64,17 @@ export function Phase6_4({ onReset }: Props) {
             </li>
             <li>
               <strong className="text-text">Explore other hardware wallets when ready.</strong>{' '}
-              As you learn more, consider options like Coldcard, SeedSigner, Blockstream Jade,
-              or Trezor for multi-sig setups.
+              This guide also covers{' '}
+              {device.id === 'passport'
+                ? 'SeedSigner and ColdCard Q'
+                : device.id === 'seedsigner'
+                  ? 'Foundation Passport and ColdCard Q'
+                  : 'Foundation Passport and SeedSigner'}{' '}
+              — a second device makes a great decoy or backup signer.
             </li>
             <li>
               <strong className="text-text">Share First Sat with someone who needs it.</strong>{' '}
-              Know someone with a Passport still in the box? Send them this guide.
+              Know someone with a hardware wallet still in the box? Send them this guide.
             </li>
           </ul>
         </div>

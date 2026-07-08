@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
 import { stepToRoute, getNextStep } from '../hooks/useProgress';
+import { useDevice } from '../devices';
 
 interface Props {
   onComplete: (stepId: string) => void;
@@ -8,6 +9,7 @@ interface Props {
 
 export function Phase3_4({ onComplete }: Props) {
   const navigate = useNavigate();
+  const device = useDevice();
 
   const handleContinue = () => {
     onComplete('3.4');
@@ -27,8 +29,8 @@ export function Phase3_4({ onComplete }: Props) {
         },
       }}
     >
-      <div className="space-y-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bitcoin/10 border border-bitcoin/20">
+      <div className="space-y-6 stagger">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bitcoin/10 border border-bitcoin/20 anim-float">
           <span className="text-2xl">🛡️</span>
         </div>
 
@@ -52,7 +54,7 @@ export function Phase3_4({ onComplete }: Props) {
         </div>
 
         {/* Recommendation card */}
-        <div className="bg-bg-card rounded-xl border border-bitcoin/20 p-5 space-y-4">
+        <div className="card-lift bg-bg-card rounded-xl border border-bitcoin/20 p-5 space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-bitcoin font-bold text-sm uppercase tracking-wider">
               Recommended
@@ -62,8 +64,8 @@ export function Phase3_4({ onComplete }: Props) {
           <h3 className="text-lg font-semibold text-text">MicroSeed</h3>
 
           <p className="text-sm text-text-muted leading-relaxed">
-            A compact, durable steel backup solution. Stamp your 24 words into
-            stainless steel that lasts a lifetime.
+            A compact, durable steel backup solution. Stamp your {device.seedWords}{' '}
+            words into stainless steel that lasts a lifetime.
           </p>
 
           <div className="bg-bitcoin/10 rounded-lg p-3 flex items-center gap-3">

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
 import { stepToRoute, getNextStep } from '../hooks/useProgress';
+import { useDevice } from '../devices';
 
 interface Props {
   onComplete: (stepId: string) => void;
@@ -8,6 +9,7 @@ interface Props {
 
 export function Phase3_1({ onComplete }: Props) {
   const navigate = useNavigate();
+  const device = useDevice();
 
   const handleContinue = () => {
     onComplete('3.1');
@@ -16,8 +18,8 @@ export function Phase3_1({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="3.1" onContinue={handleContinue} ctaText="I understand the importance →">
-      <div className="space-y-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-warning/10 border border-warning/20">
+      <div className="space-y-6 stagger">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-warning/10 border border-warning/20 anim-wobble">
           <span className="text-2xl">⚠️</span>
         </div>
 
@@ -29,17 +31,35 @@ export function Phase3_1({ onComplete }: Props) {
 
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
-            Your seed phrase <strong className="text-text">is</strong> your Bitcoin. It's not a password — it's more like the master key to a vault that holds everything.
+            Your seed phrase <strong className="text-text">is</strong> your Bitcoin.
+            It's not a password — it's more like the master key to a vault that
+            holds everything.
           </p>
 
-          <p>
-            The Passport device? That's a tool. A very good tool. But if you lost it tomorrow and still had your seed phrase, your Bitcoin would be completely safe. You could recover everything on a new device.
-          </p>
+          {device.id === 'seedsigner' ? (
+            <p>
+              With SeedSigner this is even more literal: the device stores nothing,
+              so your written seed phrase is the <em>only</em> place your wallet
+              exists. Lose the phrase, lose the Bitcoin. Protect the phrase, and
+              you can rebuild everything on any SeedSigner — or any other wallet —
+              at any time.
+            </p>
+          ) : (
+            <p>
+              The {device.short} device? That's a tool. A very good tool. But if
+              you lost it tomorrow and still had your seed phrase, your Bitcoin
+              would be completely safe. You could recover everything on a new
+              device.
+            </p>
+          )}
 
           <div className="bg-bg-card rounded-xl border border-warning/20 p-5">
             <p className="text-warning font-semibold mb-2">Here's the flip side:</p>
             <p>
-              If you lose your seed phrase, your Bitcoin is <strong className="text-text">gone forever</strong>. There's no bank to call. No customer support. No "forgot my password" button. No recovery. This is the price of true ownership — and it's worth it.
+              If you lose your seed phrase, your Bitcoin is{' '}
+              <strong className="text-text">gone forever</strong>. There's no bank
+              to call. No customer support. No "forgot my password" button. No
+              recovery. This is the price of true ownership — and it's worth it.
             </p>
           </div>
 

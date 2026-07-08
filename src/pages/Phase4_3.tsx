@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
 import { stepToRoute, getNextStep } from '../hooks/useProgress';
+import { useDevice } from '../devices';
 
 interface Props {
   onComplete: (stepId: string) => void;
@@ -8,6 +9,7 @@ interface Props {
 
 export function Phase4_3({ onComplete }: Props) {
   const navigate = useNavigate();
+  const device = useDevice();
 
   const handleContinue = () => {
     onComplete('4.3');
@@ -16,8 +18,8 @@ export function Phase4_3({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="4.3" onContinue={handleContinue} ctaText="Got it, next →">
-      <div className="space-y-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-success/10 border border-success/20">
+      <div className="space-y-6 stagger">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-success/10 border border-success/20 anim-pop-in">
           <span className="text-2xl">✓</span>
         </div>
 
@@ -28,7 +30,7 @@ export function Phase4_3({ onComplete }: Props) {
 
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
-            Sparrow is now paired with your Passport. Here's a quick orientation of
+            Sparrow is now paired with your {device.short}. Here's a quick orientation of
             what you can see:
           </p>
         </div>

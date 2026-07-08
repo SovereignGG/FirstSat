@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
 import { stepToRoute, getNextStep } from '../hooks/useProgress';
+import { useDevice } from '../devices';
 
 interface Props {
   onComplete: (stepId: string) => void;
@@ -8,6 +9,12 @@ interface Props {
 
 export function Phase6_1({ onComplete }: Props) {
   const navigate = useNavigate();
+  const device = useDevice();
+
+  const deviceReady =
+    device.id === 'seedsigner'
+      ? 'Your SeedSigner, powered on (you\'ll load your seed when it\'s time to verify)'
+      : `Your ${device.short}, powered on and unlocked`;
 
   const handleContinue = () => {
     onComplete('6.1');
@@ -16,8 +23,8 @@ export function Phase6_1({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="6.1" onContinue={handleContinue} ctaText="I'm ready for my test run →">
-      <div className="space-y-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bitcoin/10 border border-bitcoin/20">
+      <div className="space-y-6 stagger">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bitcoin/10 border border-bitcoin/20 anim-float">
           <span className="text-2xl">🧪</span>
         </div>
 
@@ -49,7 +56,7 @@ export function Phase6_1({ onComplete }: Props) {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-bitcoin mt-0.5">•</span>
-              Your Passport, powered on and unlocked
+              {deviceReady}
             </li>
             <li className="flex items-start gap-2">
               <span className="text-bitcoin mt-0.5">•</span>

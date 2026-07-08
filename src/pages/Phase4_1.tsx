@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { StepLayout } from '../components/StepLayout';
 import { stepToRoute, getNextStep } from '../hooks/useProgress';
+import { useDevice } from '../devices';
 
 interface Props {
   onComplete: (stepId: string) => void;
@@ -8,6 +9,7 @@ interface Props {
 
 export function Phase4_1({ onComplete }: Props) {
   const navigate = useNavigate();
+  const device = useDevice();
 
   const handleContinue = () => {
     onComplete('4.1');
@@ -16,7 +18,7 @@ export function Phase4_1({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="4.1" onContinue={handleContinue} ctaText="Sparrow is installed →">
-      <div className="space-y-6">
+      <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
           Install <span className="text-bitcoin">Sparrow</span> on your computer
         </h1>
@@ -24,11 +26,11 @@ export function Phase4_1({ onComplete }: Props) {
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
             Sparrow is the best desktop Bitcoin wallet available. It's open source,
-            privacy-focused, and works perfectly with your Passport.
+            privacy-focused, and works perfectly with your {device.short}.
           </p>
           <p>
             Think of Sparrow as your control center — it lets you see your balance,
-            manage transactions, and interact with your Passport from your computer.
+            manage transactions, and interact with your {device.short} from your computer.
           </p>
         </div>
 
@@ -36,7 +38,7 @@ export function Phase4_1({ onComplete }: Props) {
           href="https://sparrowwallet.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-bg-card hover:bg-bg-card-hover border border-border rounded-xl p-5 transition-colors"
+          className="card-lift block bg-bg-card border border-border rounded-xl p-5"
         >
           <div className="flex items-center justify-between">
             <div>

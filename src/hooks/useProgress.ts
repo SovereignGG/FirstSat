@@ -1,22 +1,40 @@
 import { useState, useCallback, useEffect } from 'react';
+import { isDeviceId, type DeviceId } from '../devices';
 
 const STORAGE_KEY = 'first-sat-progress';
 
 export interface ProgressState {
   completedSteps: string[];
   currentStep: string;
+  device: DeviceId | null;
 }
 
 const defaultState: ProgressState = {
   completedSteps: [],
   currentStep: 'landing',
+  device: null,
 };
 
 function loadProgress(): ProgressState {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored) as Partial<ProgressState>;
+      const completedSteps = Array.isArray(parsed.completedSteps)
+        ? parsed.completedSteps
+        : [];
+      // Progress saved before device selection existed was always Passport.
+      const device = isDeviceId(parsed.device)
+        ? parsed.device
+        : completedSteps.length > 0
+          ? 'passport'
+          : null;
+      return {
+        completedSteps,
+        currentStep:
+          typeof parsed.currentStep === 'string' ? parsed.currentStep : 'landing',
+        device,
+      };
     }
   } catch {
     // ignore
@@ -29,13 +47,13 @@ export const STEPS = [
   { id: '1.1', phase: 1, label: 'The Problem' },
   { id: '1.2', phase: 1, label: 'Your Journey' },
   { id: '2.1', phase: 2, label: 'Unboxing' },
-  { id: '2.2', phase: 2, label: 'Download Envoy' },
-  { id: '2.3', phase: 2, label: 'Validation' },
-  { id: '2.4', phase: 2, label: 'Set PIN' },
+  { id: '2.2', phase: 2, label: 'Get Started' },
+  { id: '2.3', phase: 2, label: 'Verify Device' },
+  { id: '2.4', phase: 2, label: 'Protect Device' },
   { id: '2.5', phase: 2, label: 'Firmware' },
   { id: '3.1', phase: 3, label: 'Seed Phrase Intro' },
   { id: '3.2', phase: 3, label: 'Write It Down' },
-  { id: '3.3', phase: 3, label: 'microSD Backup' },
+  { id: '3.3', phase: 3, label: 'Second Backup' },
   { id: '3.4', phase: 3, label: 'Steel Backup' },
   { id: '4.1', phase: 4, label: 'Install Sparrow' },
   { id: '4.2', phase: 4, label: 'Pair Sparrow' },
@@ -52,7 +70,7 @@ export const STEPS = [
 export const PHASES = [
   { number: 0, name: 'Welcome', steps: 1 },
   { number: 1, name: 'Why This Matters', steps: 2 },
-  { number: 2, name: 'Passport Setup', steps: 5 },
+  { number: 2, name: 'Device Setup', steps: 5 },
   { number: 3, name: 'Seed Phrase', steps: 4 },
   { number: 4, name: 'Sparrow Wallet', steps: 3 },
   { number: 5, name: 'BULL Wallet', steps: 3 },
@@ -98,21 +116,27 @@ export function useProgress() {
       if (prev.completedSteps.includes(stepId)) return prev;
       const next = getNextStep(stepId);
       return {
+        ...prev,
         completedSteps: [...prev.completedSteps, stepId],
         currentStep: next ?? prev.currentStep,
       };
     });
   }, []);
 
+  const setDevice = useCallback((device: DeviceId) => {
+    setState((prev) => ({ ...prev, device }));
+  }, []);
+
   const canAccess = useCallback(
     (stepId: string): boolean => {
       if (stepId === 'landing') return true;
+      if (!state.device) return false;
       const idx = getStepIndex(stepId);
       if (idx <= 0) return true;
       const prevStepId = STEPS[idx - 1].id;
       return state.completedSteps.includes(prevStepId);
     },
-    [state.completedSteps]
+    [state.completedSteps, state.device]
   );
 
   const isCompleted = useCallback(
@@ -131,6 +155,7 @@ export function useProgress() {
   return {
     ...state,
     completeStep,
+    setDevice,
     canAccess,
     isCompleted,
     getProgress,

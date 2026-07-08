@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { PHASES, STEPS, getStepIndex } from '../hooks/useProgress';
+import { DeviceContext } from '../devices';
 
 interface ProgressBarProps {
   currentStepId: string;
@@ -6,6 +8,7 @@ interface ProgressBarProps {
 }
 
 export function ProgressBar({ currentStepId, completedSteps }: ProgressBarProps) {
+  const device = useContext(DeviceContext);
   const currentIdx = getStepIndex(currentStepId);
   const currentPhase = currentIdx >= 0 ? STEPS[currentIdx].phase : 0;
   const totalSteps = STEPS.length - 1; // exclude landing
@@ -17,6 +20,11 @@ export function ProgressBar({ currentStepId, completedSteps }: ProgressBarProps)
       <div className="max-w-2xl mx-auto">
         {/* Phase pills */}
         <div className="flex items-center gap-1.5 mb-2 overflow-x-auto">
+          {device && (
+            <span className="flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold bg-bitcoin/10 text-bitcoin border border-bitcoin/25">
+              {device.short}
+            </span>
+          )}
           {PHASES.filter((p) => p.number > 0).map((phase) => {
             const isActive = phase.number === currentPhase;
             const phaseSteps = STEPS.filter((s) => s.phase === phase.number);
@@ -33,9 +41,9 @@ export function ProgressBar({ currentStepId, completedSteps }: ProgressBarProps)
               <div
                 key={phase.number}
                 className={`
-                  flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-medium transition-all
+                  flex-shrink-0 px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-300
                   ${allDone
-                    ? 'bg-success/20 text-success'
+                    ? 'bg-success/20 text-success anim-pop-in'
                     : isActive
                       ? 'bg-bitcoin/20 text-bitcoin'
                       : someStarted
@@ -54,7 +62,7 @@ export function ProgressBar({ currentStepId, completedSteps }: ProgressBarProps)
         <div className="flex items-center gap-3">
           <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
             <div
-              className="h-full bg-bitcoin rounded-full transition-all duration-500 ease-out"
+              className="progress-fill h-full bg-bitcoin rounded-full transition-all duration-700 ease-out"
               style={{ width: `${percent}%` }}
             />
           </div>

@@ -44,11 +44,11 @@ export function StepLayout({
   return (
     <div className="max-w-2xl mx-auto px-4 py-8 min-h-[calc(100vh-120px)] flex flex-col">
       {/* Step indicator */}
-      <div className="flex items-center gap-3 mb-8">
+      <div className="flex items-center gap-3 mb-8 anim-fade-in">
         {prevStep && (
           <button
             onClick={handleBack}
-            className="p-2 -ml-2 text-text-muted hover:text-text transition-colors"
+            className="p-2 -ml-2 text-text-muted hover:text-text hover:-translate-x-0.5 transition-all cursor-pointer"
             aria-label="Go back"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -75,7 +75,7 @@ export function StepLayout({
             w-full py-4 px-6 rounded-xl font-semibold text-base transition-all
             ${ctaDisabled
               ? 'bg-border text-text-dim cursor-not-allowed'
-              : 'bg-bitcoin hover:bg-bitcoin-hover text-white cursor-pointer active:scale-[0.98]'
+              : 'btn-sheen bg-bitcoin hover:bg-bitcoin-hover text-white cursor-pointer active:scale-[0.98] hover:shadow-[0_8px_30px_-8px_rgba(247,147,26,0.5)]'
             }
           `}
         >

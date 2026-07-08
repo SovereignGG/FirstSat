@@ -16,8 +16,8 @@ export function Phase5_3({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="5.3" onContinue={handleContinue} ctaText="Ready for the final step →">
-      <div className="space-y-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-success/10 border border-success/20">
+      <div className="space-y-6 stagger">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-success/10 border border-success/20 anim-pop-in">
           <span className="text-2xl">📱</span>
         </div>
 

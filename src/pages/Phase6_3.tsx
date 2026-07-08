@@ -16,7 +16,7 @@ export function Phase6_3({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="6.3" onContinue={handleContinue} ctaText="Test transaction confirmed ✓">
-      <div className="space-y-6">
+      <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
           Send a <span className="text-bitcoin">small test amount</span>
         </h1>

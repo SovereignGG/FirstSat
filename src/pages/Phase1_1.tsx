@@ -16,7 +16,7 @@ export function Phase1_1({ onComplete }: Props) {
 
   return (
     <StepLayout stepId="1.1" onContinue={handleContinue} ctaText="I understand, let's continue →">
-      <div className="space-y-6">
+      <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
           Your Bitcoin on an exchange
           <br />
