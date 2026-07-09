@@ -43,7 +43,7 @@ export const DEVICES: Record<DeviceId, DeviceMeta> = {
     ],
     needs: [
       { icon: '📦', text: 'Foundation Passport (in the box)' },
-      { icon: '📱', text: 'Your phone (for the Envoy app)' },
+      { icon: '📱', text: 'Your phone (for the Envoy app & BULL Wallet)' },
       { icon: '💻', text: 'Your computer (for Sparrow)' },
       { icon: '⏱️', text: '30 minutes of uninterrupted time' },
     ],
