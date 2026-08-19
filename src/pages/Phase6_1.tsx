@@ -12,8 +12,8 @@ export function Phase6_1({ onComplete }: Props) {
   const device = useDevice();
 
   const deviceReady =
-    device.id === 'seedsigner'
-      ? 'Your SeedSigner, powered on (you\'ll load your seed when it\'s time to verify)'
+    device.id === 'seedsigner' || device.id === 'specterdiy'
+      ? `Your ${device.short}, powered on (you'll load your seed when it's time to verify)`
       : `Your ${device.short}, powered on and unlocked`;
 
   const handleContinue = () => {

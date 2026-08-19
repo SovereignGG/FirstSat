@@ -13,8 +13,8 @@ const VERIFY_HOW: Record<DeviceId, string> = {
     'Use your Passport to verify the address matches. Malware on your computer could swap the address to steal your Bitcoin. The Passport screen cannot be tampered with — it\'s your source of truth. Always verify.',
   seedsigner:
     'Load your seed on the SeedSigner, then use Tools → Address Explorer to display your receive addresses — or scan the address QR from Sparrow with the SeedSigner camera to confirm it belongs to your seed. Malware on your computer could swap the address; the SeedSigner screen is your source of truth. Always verify.',
-  coldcardq:
-    'On your Q, open Address Explorer to display your receive addresses on the device screen — or scan the address QR from Sparrow with the Q\'s camera. Malware on your computer could swap the address; the Q\'s screen is your source of truth. Always verify.',
+  specterdiy:
+    "Load your key on the Specter DIY, then use Receive addresses to display them on the touchscreen — or scan the address QR from Sparrow with the built-in scanner to confirm it belongs to your seed. Malware on your computer could swap the address; the Specter DIY screen is your source of truth. Always verify.",
 };
 
 export function Phase6_2({ onComplete }: Props) {

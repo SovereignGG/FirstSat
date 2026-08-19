@@ -25,7 +25,7 @@ const CONTENT: Record<
   }
 > = {
   passport: {
-    titlePre: 'First, verify your Passport is ',
+    titlePre: 'First, verify your Passport Core is ',
     titleHighlight: 'genuine',
     intro: [
       'Before powering on your Passport, let\'s verify it hasn\'t been tampered with during shipping. This is called a "supply chain attack" — when someone intercepts a device before it reaches you and modifies it.',
@@ -62,23 +62,23 @@ const CONTENT: Record<
     ],
     ctaText: 'I have all my parts →',
   },
-  coldcardq: {
-    titlePre: 'First, check the ',
-    titleHighlight: 'tamper-evident bag',
+  specterdiy: {
+    titlePre: 'First, gather your ',
+    titleHighlight: 'Specter DIY parts',
     intro: [
-      'Your ColdCard Q ships sealed inside a numbered, tamper-evident plastic bag. Before opening anything, let\'s make sure nobody intercepted it on the way to you — a so-called "supply chain attack".',
-      "Take a close look at the bag before you cut it open. You'll confirm the bag number on the device screen at first boot.",
+      'Specter DIY is built from a generic touchscreen development board plus a QR scanner module — no branded box, no vendor-sealed bag. That\'s the point: nothing here was ever configured for Bitcoin at the factory, so there\'s no proprietary firmware to trust blindly.',
+      "Because you'll flash and verify the software yourself in the next step, there's no tamper seal to inspect now. Just make sure you have every part before you start.",
     ],
-    checklistHeading: 'Inspect before opening',
+    checklistHeading: 'Parts checklist',
     checklistItems: [
-      'Bag is sealed and intact',
-      'No cuts, punctures or re-gluing',
-      'Bag number is printed and legible',
-      'Write the bag number down',
-      'Device looks undamaged inside',
-      'Get 3x AAA batteries (or USB-C cable) ready',
+      'STM32F469I-DISCO discovery board',
+      'QR scanner module (e.g. Waveshare GM65) + long pin headers',
+      'A microSD card (FAT32, 32GB or smaller)',
+      'A mini-USB cable',
+      'Computer with a USB port',
+      'Optional: a powerbank for battery power later',
     ],
-    ctaText: 'My bag checks out →',
+    ctaText: 'I have all my parts →',
   },
 };
 
@@ -141,14 +141,14 @@ export function Phase2_1({ onComplete }: Props) {
           </div>
         )}
 
-        {/* ColdCard-only: why the bag matters */}
-        {device.id === 'coldcardq' && (
+        {/* Specter DIY-only: where to buy note */}
+        {device.id === 'specterdiy' && (
           <div className="bg-bitcoin/5 border border-bitcoin/20 rounded-xl p-5">
             <p className="text-sm text-text-muted leading-relaxed">
-              <strong className="text-bitcoin">Why the number matters:</strong>{' '}
-              Coinkite stores the bag number inside your Q's secure element at the
-              factory. At first boot, the device shows it on screen — if it
-              doesn't match the bag it arrived in, someone opened it in transit.
+              <strong className="text-bitcoin">Tip:</strong> Buy the discovery
+              board and scanner module from any electronics distributor —
+              Mouser, RS, Digi-Key, or similar. No soldering is required for
+              the basic build; the scanner plugs onto pin headers.
             </p>
           </div>
         )}

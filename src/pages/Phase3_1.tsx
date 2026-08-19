@@ -36,13 +36,13 @@ export function Phase3_1({ onComplete }: Props) {
             holds everything.
           </p>
 
-          {device.id === 'seedsigner' ? (
+          {device.id === 'seedsigner' || device.id === 'specterdiy' ? (
             <p>
-              With SeedSigner this is even more literal: the device stores nothing,
-              so your written seed phrase is the <em>only</em> place your wallet
-              exists. Lose the phrase, lose the Bitcoin. Protect the phrase, and
-              you can rebuild everything on any SeedSigner — or any other wallet —
-              at any time.
+              With {device.short} this is even more literal: the device stores
+              nothing, so your written seed phrase is the <em>only</em> place
+              your wallet exists. Lose the phrase, lose the Bitcoin. Protect
+              the phrase, and you can rebuild everything on any {device.short}{' '}
+              — or any other wallet — at any time.
             </p>
           ) : (
             <p>

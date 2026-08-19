@@ -48,20 +48,20 @@ const CONTENT: Record<
     note: "You're already on the latest release. Continue to the next step.",
     ctaText: "I'm on the latest release →",
   },
-  coldcardq: {
+  specterdiy: {
     title: (
       <>
-        Update your <span className="text-bitcoin">firmware</span>
+        Staying <span className="text-bitcoin">up to date</span>
       </>
     ),
     intro: [
-      'Coinkite regularly ships firmware updates with security hardening and new features. Your Q updates via the microSD card — no computer connection needed.',
-      'Check the version under Advanced → Upgrade Firmware, then compare with the latest on coldcard.com/docs/upgrade.',
+      'The open source community ships Specter DIY firmware updates with bug fixes and new features. Updates install over the microSD card — no need to unplug and re-flash over USB again.',
+      'You already verified the initial firmware signature; updates work the same way, just via SD card instead of a direct USB copy.',
     ],
     howHeading: 'How to update',
-    how: 'Download the latest firmware from coldcard.com on your computer, copy it onto the microSD card, insert the card into your Q, and choose Advanced → Upgrade Firmware. The Q verifies the file is genuinely signed by Coinkite before installing.',
-    note: 'If your Q already shows the latest version, continue to the next step.',
-    ctaText: 'Firmware is current →',
+    how: 'Download the latest specter_upgrade_<version>.bin from the GitHub releases page and verify its signature. Copy it — and only it — to the root of a FAT32 microSD card, insert the card, and power on the board. The bootloader flashes it automatically and tells you when it\'s done.',
+    note: "You're already on the version you just flashed. Continue to the next step.",
+    ctaText: "I'm on the latest release →",
   },
 };
 

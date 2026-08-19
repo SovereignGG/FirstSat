@@ -125,39 +125,54 @@ export function Phase2_2({ onComplete }: Props) {
     );
   }
 
-  // ColdCard Q
+  // Specter DIY
   return (
-    <StepLayout stepId="2.2" onContinue={handleContinue} ctaText="My Q is powered on →">
+    <StepLayout stepId="2.2" onContinue={handleContinue} ctaText="Firmware flashed →">
       <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-          Power on your <span className="text-bitcoin">ColdCard Q</span>
+          Download and flash the <span className="text-bitcoin">Specter firmware</span>
         </h1>
 
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
-            Cut open the bag (keep it — the number is on it), and let's bring
-            your Q to life. It runs on batteries or USB-C, and never needs to be
-            plugged into a computer.
+            Your discovery board is a blank slate — it doesn't know it's about
+            to become a Bitcoin signer. You'll download the Specter DIY
+            firmware, verify it's genuine, and copy it onto the board.
           </p>
         </div>
+
+        <a
+          href="https://github.com/cryptoadvance/specter-diy/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="card-lift block bg-bg-card border border-border rounded-xl p-5"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-text font-semibold">Download Specter DIY firmware</p>
+              <p className="text-sm text-text-dim mt-1">github.com/cryptoadvance/specter-diy/releases</p>
+            </div>
+            <span className="text-text-muted">→</span>
+          </div>
+        </a>
 
         <div className="space-y-3">
           {[
             {
               num: 1,
-              text: 'Open the battery compartment on the back and insert 3x AAA batteries — or connect a USB-C cable to a wall charger.',
+              text: "Download the latest initial_firmware_<version>.bin from the releases page, and verify its PGP signature against the Specter Signer key — the release notes explain how.",
             },
             {
               num: 2,
-              text: 'Hold the power button until the screen lights up.',
+              text: 'Set the power jumper on your board to the STLK position, then connect it to your computer with the mini-USB cable. It appears as a removable drive named DIS_F469NI.',
             },
             {
               num: 3,
-              text: 'Read and accept the Terms of Sale shown on screen.',
+              text: 'Copy the .bin file onto that drive. The board flashes itself and reboots — this can take a minute, and sometimes needs 2-3 attempts if the first copy fails.',
             },
             {
               num: 4,
-              text: "The Q will display its serial and bag number — don't tap past this yet. We'll verify it in the next step.",
+              text: 'Plug the QR scanner module onto the header pins as shown in the build guide. Keep the device powered off for now.',
             },
           ].map((step) => (
             <div
@@ -176,10 +191,10 @@ export function Phase2_2({ onComplete }: Props) {
 
         <div className="bg-bg-card rounded-xl border border-border p-5">
           <p className="text-sm text-text-muted leading-relaxed">
-            <span className="text-success font-medium">✓ Fully airgapped</span> — the
-            Q talks to the outside world through QR codes, NFC and a microSD card.
-            No companion app is required; you'll pair it directly with Sparrow and
-            BULL Wallet later.
+            <span className="text-success font-medium">✓ Why verify?</span> — With
+            Specter DIY, the firmware <em>is</em> the device's security. Checking
+            the signature is the Specter DIY equivalent of checking a
+            tamper-evident seal.
           </p>
         </div>
       </div>

@@ -39,17 +39,17 @@ const CONTENT: Record<
     note: 'No webcam? Choose the file export option on SeedSigner\'s newer releases, or type the xpub manually — but QR is by far the easiest.',
     ctaText: 'SeedSigner is paired with Sparrow →',
   },
-  coldcardq: {
+  specterdiy: {
     intro:
-      'Sparrow needs your wallet\'s public key (xpub) to watch your balance. The Q exports it on the microSD card — or straight over QR. Your seed never leaves the device.',
+      "Sparrow needs your wallet's public key (xpub) to watch your balance. Your Specter DIY shows it as a QR code that Sparrow scans with your webcam — your seed itself never leaves the device.",
     steps: [
-      'On your Q: Advanced / Tools → Export Wallet → Sparrow Wallet. The Q writes a small file to the microSD card.',
-      'Move the microSD card to your computer (use the included adapter if needed).',
-      'In Sparrow: File → New Wallet, give it a name, then select "Airgapped Hardware Wallet" and click Import File under ColdCard.',
-      'Select the file from the microSD card. Sparrow builds your watch-only wallet. Click Apply.',
+      'Power on your Specter DIY and load your key (scan your SeedQR, or enter the 24 words on the touchscreen).',
+      'On the device: your key → Export xpub → Single sig → Native SegWit, then choose to show it as a QR code.',
+      'In Sparrow: File → New Wallet, give it a name, then select "Airgapped Hardware Wallet" and click Scan under Specter.',
+      "Hold the Specter DIY's QR code up to your webcam. Sparrow imports the xpub and builds your watch-only wallet. Click Apply.",
     ],
-    note: 'Prefer no card shuffling? Sparrow can also scan the QR version: choose the QR export on your Q and click Scan in Sparrow instead.',
-    ctaText: 'ColdCard Q is paired with Sparrow →',
+    note: 'No webcam? Specter DIY can also export the xpub to a microSD card, which Sparrow can import as a file instead.',
+    ctaText: 'Specter DIY is paired with Sparrow →',
   },
 };
 

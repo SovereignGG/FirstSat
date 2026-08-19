@@ -60,26 +60,25 @@ const CONTENT: Record<
     },
     ctaText: 'SeedQR backup created →',
   },
-  coldcardq: {
-    icon: '💾',
+  specterdiy: {
+    icon: '🔳',
     title: (
       <>
-        Back up to an
-        <br />
-        <span className="text-bitcoin">encrypted microSD card</span>
+        Create a<br />
+        <span className="text-bitcoin">SeedQR backup</span>
       </>
     ),
     intro: [
-      'Your Q can write a fully encrypted backup of everything — seed, settings, wallets — onto a microSD card in seconds.',
-      'The backup is protected by its own password made of 12 BIP-39 words that the Q shows you once. Without those words, the file is useless to anyone who finds it.',
+      'Because Specter DIY forgets your seed the moment it powers off, a SeedQR is how you\'ll reload it every time: draw your seed phrase as a QR code on paper, and next time just hold it up to the built-in scanner instead of typing 24 words.',
+      'Specter DIY will display your SeedQR on screen with a grid, so you can copy it square by square onto a template.',
     ],
     howHeading: 'How to do it',
-    how: 'Insert your microSD card, then choose Advanced / Tools → Backup → Backup System. The Q shows 12 backup-password words — write them on a separate piece of paper — then writes the encrypted file to the card.',
+    how: 'On the device: your key → Backup → Show as QR code. Choose the compact SeedQR format, then copy the pattern square-by-square onto a printed SeedQR template, or punch it into a metal plate.',
     keyPoint: {
-      heading: 'Important',
-      body: 'Store the microSD card and the 12 backup-password words in different places, and both away from your main seed phrase. Any two of these three together can restore your wallet — spread the risk.',
+      heading: 'Treat it like the words',
+      body: 'A SeedQR is your full seed — anyone who scans it owns your Bitcoin. Store it as carefully as your written words, in a different place. Never photograph it or display it near a camera.',
     },
-    ctaText: 'Encrypted backup created →',
+    ctaText: 'SeedQR backup created →',
   },
 };
 

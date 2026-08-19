@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-export type DeviceId = 'passport' | 'seedsigner' | 'coldcardq';
+export type DeviceId = 'passport' | 'seedsigner' | 'specterdiy';
 
 export interface DeviceNeed {
   icon: string;
@@ -27,8 +27,8 @@ export const DEVICES: Record<DeviceId, DeviceMeta> = {
   passport: {
     id: 'passport',
     order: 1,
-    name: 'Foundation Passport',
-    short: 'Passport',
+    name: 'Foundation Passport Core',
+    short: 'Passport Core',
     maker: 'Foundation',
     tagline: 'The friendly one',
     description:
@@ -42,7 +42,7 @@ export const DEVICES: Record<DeviceId, DeviceMeta> = {
       'Envoy app guides the whole setup',
     ],
     needs: [
-      { icon: '📦', text: 'Foundation Passport (in the box)' },
+      { icon: '📦', text: 'Foundation Passport Core (in the box)' },
       { icon: '📱', text: 'Your phone (for the Envoy app & BULL Wallet)' },
       { icon: '💻', text: 'Your computer (for Sparrow)' },
       { icon: '⏱️', text: '30 minutes of uninterrupted time' },
@@ -73,30 +73,31 @@ export const DEVICES: Record<DeviceId, DeviceMeta> = {
       { icon: '⏱️', text: '45 minutes of uninterrupted time' },
     ],
   },
-  coldcardq: {
-    id: 'coldcardq',
+  specterdiy: {
+    id: 'specterdiy',
     order: 3,
-    name: 'ColdCard Q',
-    short: 'ColdCard Q',
-    maker: 'Coinkite',
-    tagline: 'The power user one',
+    name: 'Specter DIY',
+    short: 'Specter DIY',
+    maker: 'Open source community (Cryptoadvance)',
+    tagline: 'The touchscreen DIY one',
     description:
-      'Full QWERTY keyboard, big screen, built-in QR scanner. Battery powered and fully airgapped.',
+      'Build it yourself from an off-the-shelf touchscreen dev board and a QR scanner module. Fully airgapped, with multisig and passphrases built in.',
     seedWords: 24,
-    setupTime: '12 min',
-    totalTime: '~35 minutes',
+    setupTime: '20 min',
+    totalTime: '~45 minutes',
     highlights: [
-      'QWERTY keyboard & QR scanner',
-      'Runs on AAA batteries — airgapped',
-      'Battle-tested Coinkite security',
+      'Full-color touchscreen — no tiny buttons',
+      'Airgapped over QR — no soldering required',
+      'Built-in multisig & BIP39 passphrase support',
     ],
     needs: [
-      { icon: '📦', text: 'ColdCard Q in its sealed bag' },
-      { icon: '🔋', text: '3x AAA batteries (or a USB-C cable)' },
-      { icon: '💾', text: 'A microSD card' },
-      { icon: '💻', text: 'Your computer (for Sparrow)' },
+      { icon: '🖥️', text: 'STM32F469I-DISCO discovery board' },
+      { icon: '📷', text: 'QR scanner module (e.g. Waveshare GM65)' },
+      { icon: '💾', text: 'A microSD card (for firmware upgrades)' },
+      { icon: '🔌', text: 'A mini-USB cable (to flash the firmware)' },
+      { icon: '💻', text: 'Your computer (flashing + Sparrow)' },
       { icon: '📱', text: 'Your phone (for BULL Wallet)' },
-      { icon: '⏱️', text: '35 minutes of uninterrupted time' },
+      { icon: '⏱️', text: '45 minutes of uninterrupted time' },
     ],
   },
 };
@@ -106,7 +107,7 @@ export const DEVICE_LIST: DeviceMeta[] = Object.values(DEVICES).sort(
 );
 
 export function isDeviceId(value: unknown): value is DeviceId {
-  return value === 'passport' || value === 'seedsigner' || value === 'coldcardq';
+  return value === 'passport' || value === 'seedsigner' || value === 'specterdiy';
 }
 
 export const DeviceContext = createContext<DeviceMeta | null>(null);

@@ -2,8 +2,8 @@ import type { DeviceId } from '../devices';
 
 /**
  * Stylized-but-recognizable line-art of each hardware wallet, drawn to
- * resemble the real devices (Foundation Passport, SeedSigner Open Pill,
- * Coldcard Q). All share a 120×120 viewBox for a consistent card footprint.
+ * resemble the real devices (Foundation Passport Core, SeedSigner Open Pill,
+ * Specter DIY). All share a 120×120 viewBox for a consistent card footprint.
  */
 export function DeviceArt({
   device,
@@ -14,7 +14,7 @@ export function DeviceArt({
 }) {
   if (device === 'passport') return <PassportArt className={className} />;
   if (device === 'seedsigner') return <SeedSignerArt className={className} />;
-  return <ColdcardArt className={className} />;
+  return <SpecterDiyArt className={className} />;
 }
 
 /* Row of evenly-spaced keyboard keys between x0 and x1. */
@@ -170,78 +170,78 @@ function SeedSignerArt({ className }: { className: string }) {
   );
 }
 
-/* ------------------------------ Coldcard Q ------------------------------ */
-function ColdcardArt({ className }: { className: string }) {
+/* ------------------------------ Specter DIY ----------------------------- */
+function SpecterDiyArt({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden="true">
       <defs>
-        <linearGradient id="cc-body" x1="0" y1="0" x2="0.4" y2="1">
-          <stop offset="0" stopColor="#ffab3d" />
-          <stop offset="0.5" stopColor="#f07d16" />
-          <stop offset="1" stopColor="#c85e08" />
+        <linearGradient id="sd-body" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#4a4a4a" />
+          <stop offset="0.5" stopColor="#2b2b2b" />
+          <stop offset="1" stopColor="#161616" />
+        </linearGradient>
+        <linearGradient id="sd-screen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#1c2647" />
+          <stop offset="1" stopColor="#0a0e1e" />
+        </linearGradient>
+        <linearGradient id="sd-key" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2f3a63" />
+          <stop offset="1" stopColor="#1c2647" />
         </linearGradient>
       </defs>
 
-      {/* translucent orange body */}
-      <rect x="22" y="6" width="76" height="108" rx="9" fill="url(#cc-body)" stroke="#ffc06a" strokeWidth="1.2" />
-      <rect x="24.5" y="8.5" width="71" height="103" rx="7" fill="none" stroke="#ffffff" strokeOpacity="0.18" strokeWidth="0.8" />
+      {/* textured plastic case */}
+      <rect x="28" y="4" width="64" height="112" rx="10" fill="url(#sd-body)" stroke="#0d0d0d" strokeWidth="1.4" />
 
-      {/* top branding + vent dots + SD slots */}
-      <rect x="26" y="24" width="3.5" height="5" rx="0.6" fill="#00000030" />
-      <rect x="26" y="32" width="3.5" height="5" rx="0.6" fill="#00000030" />
-      <g fill="#00000035">
-        {Array.from({ length: 3 }).map((_, r) =>
-          Array.from({ length: 4 }).map((_, c) => (
-            <circle key={`${r}-${c}`} cx={82 + c * 3.4} cy={11 + r * 3.2} r="0.9" />
-          ))
-        )}
+      {/* rough case texture on the top and bottom bezels */}
+      <g fill="#000000" fillOpacity="0.35">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <circle key={`t-${i}`} cx={33 + i * 3.2} cy="9" r="0.6" />
+        ))}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <circle key={`b-${i}`} cx={33 + i * 3.2} cy="111" r="0.6" />
+        ))}
       </g>
 
-      {/* screen */}
-      <rect x="30" y="16" width="60" height="30" rx="2" fill="#160b01" stroke="#7a3d00" strokeWidth="1" />
-      <text
-        x="60"
-        y="32"
-        textAnchor="middle"
-        fontFamily="ui-monospace, monospace"
-        fontSize="8.5"
-        fontWeight="700"
-        letterSpacing="0.5"
-        fill="#ffd21a"
-      >
-        COLDCARD
-      </text>
-      <text
-        x="60"
-        y="39"
-        textAnchor="middle"
-        fontFamily="ui-monospace, monospace"
-        fontSize="3.6"
-        fill="#e0a800"
-      >
-        Don't Trust. Verify.
-      </text>
-      <rect x="84" y="18.5" width="4" height="2.2" rx="0.5" fill="#ffd21a" fillOpacity="0.8" />
+      {/* front camera dot */}
+      <circle cx="60" cy="10" r="2.2" fill="#050505" stroke="#3a3a3a" strokeWidth="0.6" />
+      <circle cx="59.3" cy="9.3" r="0.6" fill="#5a5a5a" />
 
-      {/* function row: power, QR, nav cluster, cancel/enter */}
-      <circle cx="30.5" cy="51.5" r="2.4" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="35" y="49" width="6" height="5.5" rx="1.2" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="53" y="49" width="5.5" height="5.5" rx="1.2" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="61.5" y="49" width="5.5" height="5.5" rx="1.2" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="79" y="49" width="10" height="5.5" rx="1.2" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
+      {/* touchscreen */}
+      <rect x="34" y="16" width="52" height="92" rx="3" fill="url(#sd-screen)" stroke="#000" strokeWidth="1" />
 
-      {/* QWERTY keyboard */}
-      <KeyRow y={59} count={10} x0={26} x1={94} fill="#160b01" stroke="#7a3d00" />
-      <KeyRow y={68} count={10} x0={26} x1={94} fill="#160b01" stroke="#7a3d00" />
-      <KeyRow y={77} count={9} x0={29} x1={91} fill="#160b01" stroke="#7a3d00" />
-      <KeyRow y={86} count={8} x0={32} x1={88} fill="#160b01" stroke="#7a3d00" />
+      {/* "Enter your PIN code" title + subtitle */}
+      <rect x="45" y="23" width="30" height="3.2" rx="1.4" fill="#e7ebf5" fillOpacity="0.85" />
+      <rect x="49" y="28.5" width="22" height="2.2" rx="1" fill="#f0993d" fillOpacity="0.7" />
 
-      {/* bottom row: fn, shift, space, sym, delete */}
-      <rect x="27" y="95" width="7" height="6" rx="1.3" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="36" y="95" width="10" height="6" rx="1.3" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="48" y="95" width="24" height="6" rx="1.3" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="74" y="95" width="9" height="6" rx="1.3" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
-      <rect x="85" y="95" width="7" height="6" rx="1.3" fill="#160b01" stroke="#7a3d00" strokeWidth="0.4" />
+      {/* anti-phishing word dots + word bar */}
+      <g fill="#8a93b8">
+        <circle cx="54" cy="36" r="1" />
+        <circle cx="60" cy="36" r="1" />
+        <circle cx="66" cy="36" r="1" />
+      </g>
+      <rect x="43" y="40" width="34" height="2.6" rx="1" fill="#c9cfe6" fillOpacity="0.6" />
+
+      {/* numeric keypad */}
+      {[0, 1, 2, 3].map((row) =>
+        [0, 1, 2].map((col) => (
+          <rect
+            key={`${row}-${col}`}
+            x={40 + col * 14.5}
+            y={50 + row * 10.5}
+            width="11.5"
+            height="7.5"
+            rx="1.6"
+            fill="url(#sd-key)"
+            stroke="#000"
+            strokeOpacity="0.4"
+            strokeWidth="0.5"
+          />
+        ))
+      )}
+
+      {/* Next button */}
+      <rect x="40" y="98" width="40" height="7" rx="2" fill="#38456f" stroke="#000" strokeOpacity="0.3" strokeWidth="0.5" />
     </svg>
   );
 }

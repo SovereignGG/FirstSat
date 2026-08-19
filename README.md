@@ -3,7 +3,7 @@
 **Your first sat. Safely in cold storage.**
 
 A step-by-step guided web app that helps Bitcoin beginners get their first satoshi into cold storage.
-Visitors pick their hardware wallet on the home page — Foundation Passport, SeedSigner, or ColdCard Q — and the whole guide adapts to their device. More devices (Blockstream Jade and others) are planned.
+Visitors pick their hardware wallet on the home page — Foundation Passport Core, SeedSigner, or Specter DIY — and the whole guide adapts to their device. More devices (Blockstream Jade and others) are planned.
 
 **Live site:** [firstsat.beunruggable.com](https://firstsat.beunruggable.com)
 
@@ -18,7 +18,7 @@ First Sat fixes that. One clear path, no choice paralysis. Get the hardware wall
 ## What It Does
 
 First Sat walks beginners through 6 phases, tailored to their chosen device
-(Foundation Passport, SeedSigner, or ColdCard Q):
+(Foundation Passport Core, SeedSigner, or Specter DIY):
 
 1. **Why This Matters** — Understand exchange risk and why self-custody matters
 2. **Device Setup** — Unbox, verify, and configure your hardware wallet

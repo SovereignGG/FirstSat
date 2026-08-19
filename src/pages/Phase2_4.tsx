@@ -21,7 +21,7 @@ export function Phase2_4({ onComplete }: Props) {
       <StepLayout stepId="2.4" onContinue={handleContinue} ctaText="PIN is set →">
         <div className="space-y-6 stagger">
           <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-            Set a PIN to <span className="text-bitcoin">protect your Passport</span>
+            Set a PIN to <span className="text-bitcoin">protect your Passport Core</span>
           </h1>
 
           <div className="space-y-4 text-text-muted leading-relaxed">
@@ -136,76 +136,58 @@ export function Phase2_4({ onComplete }: Props) {
     );
   }
 
-  // ColdCard Q
+  // Specter DIY
   return (
-    <StepLayout stepId="2.4" onContinue={handleContinue} ctaText="PIN is set →">
+    <StepLayout stepId="2.4" onContinue={handleContinue} ctaText="I understand agnostic mode →">
       <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-          Set your PIN and meet your{' '}
-          <span className="text-bitcoin">anti-phishing words</span>
+          No PIN needed — your Specter DIY{' '}
+          <span className="text-bitcoin">forgets on power off</span>
         </h1>
 
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
-            The Q uses a two-part PIN, like <span className="font-mono text-text">1234-5678</span>.
-            Between the two parts, the device shows you two special words — your
-            anti-phishing words.
+            Specter DIY defaults to what its creators call{' '}
+            <strong className="text-text">"agnostic mode"</strong>: your seed
+            only exists in the board's memory while it's powered on. Unplug
+            it, and it's gone — nothing is written to storage.
+          </p>
+          <p>
+            Each time you want to sign something, you'll load your seed for a
+            few seconds — by scanning a SeedQR with the scanner module (you'll
+            make one in the next phase) or entering the words on the touchscreen.
           </p>
         </div>
 
-        <div className="space-y-3">
-          {[
-            {
-              num: 1,
-              text: 'Choose a PIN prefix (2-6 digits) and enter it.',
-            },
-            {
-              num: 2,
-              text: 'The Q displays two anti-phishing words. Memorize them — they\'ll be the same every time you enter this prefix on this device.',
-            },
-            {
-              num: 3,
-              text: 'Enter the second part of your PIN (2-6 digits) to finish.',
-            },
-            {
-              num: 4,
-              text: 'From now on: if the words ever look different after your prefix, stop — you may be holding a swapped or tampered device.',
-            },
-          ].map((step) => (
-            <div
-              key={step.num}
-              className="step-row flex gap-4 bg-bg-card rounded-xl border border-border p-4"
-            >
-              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-bitcoin/10 text-bitcoin font-bold text-sm flex items-center justify-center">
-                {step.num}
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed pt-1">
-                {step.text}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="bg-warning/5 border border-warning/30 rounded-xl p-5">
-          <div className="flex gap-3">
-            <span className="text-warning text-lg flex-shrink-0">⚠️</span>
-            <div>
-              <p className="text-warning font-semibold mb-1">There is no "forgot PIN"</p>
-              <p className="text-sm text-text-muted leading-relaxed">
-                The Q slows down after every wrong attempt to block brute-force
-                attacks, and there's no reset or recovery. Pick a PIN you'll
-                remember — and skip the "duress" and "brick me" features for now.
-                They're for advanced users.
-              </p>
-            </div>
-          </div>
+        <div className="bg-bg-card rounded-xl border border-border p-5 space-y-3">
+          <h3 className="text-sm font-semibold text-text uppercase tracking-wider">
+            What this means for you
+          </h3>
+          <ul className="space-y-2 text-sm text-text-muted">
+            <li className="flex items-start gap-2">
+              <span className="text-bitcoin mt-0.5">•</span>
+              A thief who steals your board gets a generic dev kit — there's
+              nothing Bitcoin-specific on it
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-bitcoin mt-0.5">•</span>
+              Your paper backup <strong className="text-text">is</strong> your
+              wallet — protecting it is everything
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-bitcoin mt-0.5">•</span>
+              No PIN to forget, no device to brick
+            </li>
+          </ul>
         </div>
 
         <div className="bg-bitcoin/5 border border-bitcoin/20 rounded-xl p-5">
           <p className="text-sm text-text-muted leading-relaxed">
-            <strong className="text-bitcoin">Strong recommendation:</strong>{' '}
-            Write your PIN down and store it separately from your seed phrase.
-            Different location, different hiding spot.
+            <strong className="text-bitcoin">Advanced option:</strong>{' '}
+            Specter DIY also supports an optional BIP-39 passphrase (a 13th or
+            25th word) for a hidden wallet, and a "reckless mode" that stores
+            an encrypted seed on the board behind a PIN. Both are for advanced
+            users — skip them for now and rely on your written backup instead.
           </p>
         </div>
       </div>

@@ -127,19 +127,19 @@ export function Phase2_3({ onComplete }: Props) {
     );
   }
 
-  // ColdCard Q
+  // Specter DIY
   return (
-    <StepLayout stepId="2.3" onContinue={handleContinue} ctaText="Bag number matches ✓">
+    <StepLayout stepId="2.3" onContinue={handleContinue} ctaText="It boots — I see the home screen ✓">
       <div className="space-y-6 stagger">
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-          Confirm the <span className="text-bitcoin">bag number</span> on screen
+          Power on your Specter DIY and{' '}
+          <span className="text-bitcoin">confirm the version</span>
         </h1>
 
         <div className="space-y-4 text-text-muted leading-relaxed">
           <p>
-            At first boot, your Q displays the bag number that was locked into its
-            secure element at the Coinkite factory. This is your proof that the
-            device in your hands is the same one that left the factory.
+            Time to see it come to life. Power comes from the mini-USB cable
+            for now — you can switch to a powerbank once setup is done.
           </p>
         </div>
 
@@ -147,11 +147,15 @@ export function Phase2_3({ onComplete }: Props) {
           {[
             {
               num: 1,
-              text: 'Compare the number on the Q\'s screen with the number printed on the tamper-evident bag it shipped in.',
+              text: 'Move the power jumper back to the NORM position, then power the board via mini-USB (a phone charger or your computer both work).',
             },
             {
               num: 2,
-              text: 'If they match, confirm on the device and continue.',
+              text: 'After a few seconds, the touchscreen boots into the Specter DIY home screen with the on-screen keyboard visible.',
+            },
+            {
+              num: 3,
+              text: "Open Device settings and check the firmware version matches the one you downloaded and verified in the previous step.",
             },
           ].map((step) => (
             <div
@@ -168,18 +172,13 @@ export function Phase2_3({ onComplete }: Props) {
           ))}
         </div>
 
-        <div className="bg-warning/5 border border-warning/30 rounded-xl p-5">
-          <div className="flex gap-3">
-            <span className="text-warning text-lg flex-shrink-0">⚠️</span>
-            <div>
-              <p className="text-warning font-semibold mb-1">Numbers don't match?</p>
-              <p className="text-sm text-text-muted leading-relaxed">
-                Stop here. Don't use the device, don't create a wallet on it.
-                Contact Coinkite support with photos of the bag and the screen —
-                they take supply chain integrity very seriously.
-              </p>
-            </div>
-          </div>
+        <div className="bg-bg-card rounded-xl border border-border p-5">
+          <p className="text-sm text-text-muted leading-relaxed">
+            <span className="text-success font-medium">✓ Nothing to fake</span> —
+            because you flashed the firmware yourself from a signature you
+            checked, a mismatched version here is the tell that something
+            went wrong during flashing, not a sign of tampering in transit.
+          </p>
         </div>
       </div>
     </StepLayout>

@@ -22,7 +22,7 @@ const CONTENT: Record<
     steps: [
       'Open BULL Wallet on your phone and start the hardware wallet pairing process.',
       'On your Passport, navigate to the pairing menu and select the BULL Wallet option.',
-      'Scan the QR codes between your phone and Passport, following the prompts on each device.',
+      'In BULL Wallet, click on Settings → Bitcoin Settings → Import Wallet → Foundation Passport and scan the QR code on the Passport screen with your phone camera.',
     ],
     ctaText: 'Passport is paired with BULL Wallet →',
   },
@@ -32,21 +32,21 @@ const CONTENT: Record<
     steps: [
       'Power on your SeedSigner and load your seed (scan your SeedQR or enter the words).',
       'On the SeedSigner: Seeds → your seed → Export Xpub → Single Sig → Native SegWit, and display the QR code.',
-      'In BULL Wallet, add a hardware / watch-only wallet and scan the QR code on the SeedSigner screen with your phone camera.',
+      'In BULL Wallet, click on Settings → Bitcoin Settings → Import Wallet → SeedSigner and scan the QR code on the SeedSigner screen with your phone camera.',
     ],
     note: 'Use the same Native SegWit export you used for Sparrow, so both apps watch the same wallet and show the same balance.',
     ctaText: 'SeedSigner is paired with BULL Wallet →',
   },
-  coldcardq: {
+  specterdiy: {
     intro:
-      "Let's add your wallet to BULL so you can watch your Bitcoin from your phone. The Q displays your public key (xpub) as a QR code — your seed never leaves the device.",
+      "Let's add your wallet to BULL so you can watch your Bitcoin from your phone. Just like with Sparrow, your Specter DIY shares only the public key (xpub) — never your seed.",
     steps: [
-      'In BULL Wallet, add a hardware / watch-only wallet and choose to scan a QR code.',
-      'On your Q: Advanced / Tools → Export Wallet, and pick the QR code option.',
-      'Scan the QR on the Q\'s screen with your phone camera. BULL builds your watch-only wallet.',
+      'Power on your Specter DIY and load your key (scan your SeedQR or enter the words).',
+      'On the device: your key → Export xpub → Single sig → Native SegWit, and display the QR code.',
+      'In BULL Wallet, click on Settings → Bitcoin Settings → Import Wallet → Specter and scan the QR code on the Specter screen with your phone camera.',
     ],
-    note: 'Export the same Native SegWit wallet you paired with Sparrow, so both apps show the same balance.',
-    ctaText: 'ColdCard Q is paired with BULL Wallet →',
+    note: 'Use the same Native SegWit export you used for Sparrow, so both apps watch the same wallet and show the same balance.',
+    ctaText: 'Specter DIY is paired with BULL Wallet →',
   },
 };
 

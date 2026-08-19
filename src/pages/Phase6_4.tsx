@@ -81,10 +81,10 @@ export function Phase6_4({ onReset }: Props) {
               <strong className="text-text">Explore other hardware wallets when ready.</strong>{' '}
               This guide also covers{' '}
               {device.id === 'passport'
-                ? 'SeedSigner and ColdCard Q'
+                ? 'SeedSigner and Specter DIY'
                 : device.id === 'seedsigner'
-                  ? 'Foundation Passport and ColdCard Q'
-                  : 'Foundation Passport and SeedSigner'}{' '}
+                  ? 'Foundation Passport Core and Specter DIY'
+                  : 'Foundation Passport Core and SeedSigner'}{' '}
               — a second device makes a great decoy or backup signer.
             </li>
             <li>

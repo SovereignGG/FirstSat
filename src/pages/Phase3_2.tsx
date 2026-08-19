@@ -53,21 +53,21 @@ const CONTENT: Record<
     ],
     ctaText: "I've written down all 12 words →",
   },
-  coldcardq: {
+  specterdiy: {
     title: (
       <>
-        Create your wallet and
+        Generate your key and
         <br />
         <span className="text-bitcoin">write down the words</span>
       </>
     ),
     intro:
-      'On your Q, choose New Seed Words from the main menu. The device generates 24 words using its hardware random number generators — your seed phrase, the master key to your Bitcoin.',
+      'On the home screen, choose New key. Specter DIY mixes its hardware random number generator with your own touchscreen taps for extra entropy, then generates a 24-word seed phrase — the master key to your Bitcoin.',
     steps: [
-      'Your Q will display your 24 words on its big screen. Take your time reading each one.',
-      'Write each word carefully on paper (Coinkite includes a backup card in some packages — any paper works). Number them 1 to 24.',
+      'Your Specter DIY will display your 24 words on the touchscreen. Take your time reading each one.',
+      'Write each word carefully on paper, numbered 1 to 24.',
       'Double-check every word and its number. One wrong letter could mean losing access to your Bitcoin.',
-      'The Q will quiz you on a few random words to prove you wrote them down. Pass the quiz and your wallet is live.',
+      'Confirm on the device that you saved the words, then choose "Agnostic mode" so nothing is stored on the board.',
       'Do not photograph it. Do not type it anywhere. Do not store it digitally. Pen and paper only.',
     ],
     ctaText: "I've written down all 24 words →",
